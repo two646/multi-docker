@@ -13,4 +13,10 @@ after_success:
   - docker build -t tim/multi-nginx ./nginx
   - docker build -t tim/multi-server ./server
   - docker build -t tim/multi-worker ./worker
-
+  #log in to the docker CLI
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  #take those images  and push them to docker hub
+  - docker push tim/multi-client
+  - docker push tim/multi-nginx
+  - docker push tim/multi-server
+  - docker push tim/multi-worker
